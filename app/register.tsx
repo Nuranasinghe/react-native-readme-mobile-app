@@ -1,4 +1,6 @@
+import { Link } from 'expo-router';
 import React, { useState } from 'react';
+import { Pressable } from 'react-native';
 import {
   StyleSheet,
   View,
@@ -8,7 +10,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+
 
 export default function TabTwoScreen() {
   const [userName, onChangeUserName] = useState('');
@@ -128,16 +130,13 @@ export default function TabTwoScreen() {
         <TouchableOpacity style={styles.loginButton} onPress={handleCreateAccount}>
           <Text style={styles.buttonText}>Create New Account</Text>
         </TouchableOpacity>
-        <Text style={styles.signupText}>
+        <Text style={styles.loginText}>
           Already have an account?{' '}
-          <Text
-                        style={styles.signupLink}
-                        onPress={() => {
-                          window.location.href = 'http://localhost:8081/explore';
-                        }}
-                      >
-            Log in
-          </Text>
+          <Link href="/login" asChild>
+            <Pressable>
+              <Text style={styles.loginLink} >Login</Text>
+            </Pressable>
+          </Link>
         </Text>
       </View>
     </ScrollView>
@@ -197,12 +196,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
   },
-  signupText: {
+  loginText: {
     marginTop: 15,
     fontSize: 14,
     color: '#000',
   },
-  signupLink: {
+  loginLink: {
+    marginTop: 15,
     color: '#34A853',
     fontWeight: 'bold',
   },
